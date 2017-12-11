@@ -6,12 +6,13 @@
         <div class='row'>
             <div class='col-md-2'>Filter by:</div>
             <div class='col-md-4'>
-                <input type='text' />
+                <input type='text' 
+                    [(ngModel)]='listFilter'/>
             </div>
         </div>
         <div class='row'>
             <div class='col-md-6'>
-                <h3>Filtered by: </h3>
+                <h3>Filtered by: {{listFilter}}</h3>
             </div>
         </div>
         <div class='table-responsive'>
@@ -20,8 +21,9 @@
                 <thead>
                     <tr>
                         <th>
-                            <button class='btn btn-primary'>
-                                Show Image
+                            <button class='btn btn-primary'
+                                (click)='toggleImage()'>
+                                {{showImage ? 'Hide' : 'Show'}} Image
                             </button>
                         </th>
                         <th>Weapon Name</th>
@@ -34,10 +36,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let product of products'>
+                    <tr *ngFor='let product of filteredProducts'>
                         <td>
-                            <img [src]='product.imageUrl'
-                                [title]='product.productName'
+                            <img *ngIf='showImage'
+                                [src]='product.imageUrl'
+                                
                                 [style.width.px]='imageWidth'
                                 [style.margin.px]='imageMargin'>
                         </td>
@@ -47,13 +50,13 @@
                         <td>{{ product.price }}</td>
                         <td>{{ product.starRating }}</td> -->
 
-                        <td>{{ product.Name }}</td>
-                        <td>{{ product.Level }}</td>
-                        <td>{{ product.Price }}</td>
-                        <td>{{ product.Damage }}</td>
-                        <td>{{ product.Critical }}</td>
-                        <td>{{ product.Bulk }}</td>
-                        <td>{{ product.Special }}</td>
+                        <td>{{ product.productName }}</td>
+                        <td>{{ product.productLevel }}</td>
+                        <td>{{ product.productPrice }}</td>
+                        <td>{{ product.productDamage }}</td>
+                        <td>{{ product.productCritical }}</td>
+                        <td>{{ product.productBulk }}</td>
+                        <td>{{ product.productSpecial }}</td>
 
                         </tr>
                 </tbody>
